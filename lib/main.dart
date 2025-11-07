@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'welcome.dart'; // 👈 make sure this matches your file name
+import 'welcome.dart';
+import 'home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,9 +11,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(), // 👈 class name inside welcome.dart
+      title: 'StudyBuddy',
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: const Color.fromARGB(255, 2, 55, 109),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 2, 55, 109),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromARGB(255, 2, 55, 109),
+          elevation: 0,
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      home: const WelcomeScreen(), // Launch splash first
+      routes: {'/home': (context) => const HomeScreen()},
     );
   }
 }
