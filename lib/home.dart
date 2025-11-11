@@ -1,73 +1,60 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  final List<Map<String, dynamic>> gridItems = const [
-    {'icon': Icons.person, 'label': 'Profile', 'color': Colors.teal},
-    {'icon': Icons.alarm, 'label': 'Reminders', 'color': Colors.orange},
-    {'icon': Icons.assignment, 'label': 'Assignments', 'color': Colors.purple},
-    {'icon': Icons.chat, 'label': 'AI Chat', 'color': Colors.green},
-    {'icon': Icons.school, 'label': 'Courses', 'color': Colors.red},
-    {'icon': Icons.book, 'label': 'Notes', 'color': Colors.cyan},
-  ];
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> gridItems = [
+      {'title': 'Profile', 'icon': Icons.person},
+      {'title': 'Reminders', 'icon': Icons.notifications},
+      {'title': 'Notes', 'icon': Icons.note},
+      {'title': 'AI Buddy Chat', 'icon': Icons.chat},
+      {'title': 'Timetable', 'icon': Icons.calendar_today},
+      {'title': 'Quotes of the Day', 'icon': Icons.format_quote},
+    ];
+
     return Scaffold(
-      backgroundColor: Colors.blue[900], // Dark navy background
       appBar: AppBar(
-        title: const Text('StudyBuddy'),
+        title: const Text('StudyBuddy 🤍'),
         centerTitle: true,
-        backgroundColor: Colors.blue[800],
-        elevation: 0,
+        backgroundColor: const Color.fromARGB(255, 2, 55, 109),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12.0),
         child: GridView.builder(
           itemCount: gridItems.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // 2 icons per row
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
+            crossAxisCount: 2,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
             childAspectRatio: 1,
           ),
           itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                // TODO: Replace with navigation to respective screen
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('${gridItems[index]['label']} clicked'),
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.blue[100],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    gridItems[index]['icon'],
+                    size: 50,
+                    color: Colors.blue[900],
                   ),
-                );
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: (gridItems[index]['color'] as Color).withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      gridItems[index]['icon'] as IconData,
-                      size: 50,
-                      color: Colors.white,
+                  const SizedBox(height: 10),
+                  Text(
+                    gridItems[index]['title'],
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 2, 55, 109),
                     ),
-                    const SizedBox(height: 10),
-                    Text(
-                      gridItems[index]['label'] as String,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             );
           },
