@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NotesScreen extends StatelessWidget {
-  const NotesScreen({super.key});
+class NotesPage extends StatelessWidget {
+  const NotesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,16 @@ class NotesScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Notes')),
+      appBar: AppBar(
+        title: const Text('Notes'),
+        backgroundColor: const Color.fromARGB(255, 2, 55, 109),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // 👈 back to HomePage
+          },
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: GridView.builder(
@@ -33,7 +42,7 @@ class NotesScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (_) =>
-                        FolderDetailScreen(folderName: folder['title']),
+                        FolderDetailPage(folderName: folder['title']),
                   ),
                 );
               },
@@ -72,6 +81,7 @@ class NotesScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromARGB(255, 2, 55, 109),
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Add new note feature coming soon!')),
@@ -83,9 +93,9 @@ class NotesScreen extends StatelessWidget {
   }
 }
 
-class FolderDetailScreen extends StatelessWidget {
+class FolderDetailPage extends StatelessWidget {
   final String folderName;
-  const FolderDetailScreen({super.key, required this.folderName});
+  const FolderDetailPage({super.key, required this.folderName});
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +110,16 @@ class FolderDetailScreen extends StatelessWidget {
     final notes = notesData[folderName] ?? [];
 
     return Scaffold(
-      appBar: AppBar(title: Text(folderName)),
+      appBar: AppBar(
+        title: Text(folderName),
+        backgroundColor: const Color.fromARGB(255, 2, 55, 109),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // 👈 back to NotesPage
+          },
+        ),
+      ),
       body: notes.isEmpty
           ? const Center(
               child: Text(
@@ -143,6 +162,7 @@ class FolderDetailScreen extends StatelessWidget {
               },
             ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromARGB(255, 2, 55, 109),
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

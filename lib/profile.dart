@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,6 +9,12 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Profile'),
         backgroundColor: const Color.fromARGB(255, 2, 55, 109),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // 👈 Go back to HomePage
+          },
+        ),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -80,7 +86,12 @@ class ProfileScreen extends StatelessWidget {
               // ✏️ Edit Profile Button
               ElevatedButton.icon(
                 onPressed: () {
-                  // Later: Navigate to edit profile screen
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Edit feature coming soon ✏️'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
                 },
                 icon: const Icon(Icons.edit),
                 label: const Text('Edit Profile'),

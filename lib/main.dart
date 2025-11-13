@@ -1,36 +1,60 @@
 import 'package:flutter/material.dart';
 import 'welcome.dart';
 import 'home.dart';
+import 'profile.dart';
+import 'reminders.dart';
+import 'aichat.dart';
+import 'notes.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const StudyBuddyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class StudyBuddyApp extends StatelessWidget {
+  const StudyBuddyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'StudyBuddy',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        brightness: Brightness.dark,
         primaryColor: const Color.fromARGB(255, 2, 55, 109),
-        scaffoldBackgroundColor: const Color.fromARGB(255, 2, 55, 109),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Color.fromARGB(255, 2, 55, 109),
-          elevation: 0,
-          centerTitle: true,
-          titleTextStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        brightness: Brightness.dark,
       ),
-      home: const WelcomeScreen(), // Launch splash first
-      routes: {'/home': (context) => const HomeScreen()},
+      initialRoute: '/', // start route
+      routes: {
+        '/': (context) => const SplashWrapper(), // splash screen wrapper
+        '/home': (context) => const HomePage(),
+        '/profile': (context) => const ProfilePage(),
+        '/reminders': (context) => const RemindersPage(),
+        '/aichat': (context) => const AiChatPage(),
+        '/notes': (context) => const NotesPage(),
+      },
     );
+  }
+}
+
+// 🌟 Splash screen wrapper that auto-navigates to home
+class SplashWrapper extends StatefulWidget {
+  const SplashWrapper({super.key});
+
+  @override
+  State<SplashWrapper> createState() => _SplashWrapperState();
+}
+
+class _SplashWrapperState extends State<SplashWrapper> {
+  @override
+  void initState() {
+    super.initState();
+    // Delay 3 seconds then navigate to home
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, '/home');
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const WelcomeScreen();
   }
 }

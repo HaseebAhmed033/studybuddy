@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class RemindersScreen extends StatelessWidget {
-  const RemindersScreen({super.key});
+class RemindersPage extends StatelessWidget {
+  const RemindersPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Sample reminders (you can later fetch from DB or local storage)
+    // Sample reminders (later can be fetched from DB or local storage)
     final List<Map<String, String>> reminders = [
       {'title': 'AI Quiz', 'date': '24 Nov'},
       {'title': 'Presentation', 'date': '26 Nov'},
@@ -15,12 +15,21 @@ class RemindersScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Reminders')),
+      appBar: AppBar(
+        title: const Text('Reminders'),
+        backgroundColor: const Color.fromARGB(255, 2, 55, 109),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // 👈 Go back to HomePage
+          },
+        ),
+      ),
       body: reminders.isEmpty
           ? const Center(
               child: Text(
                 'No reminders yet!',
-                style: TextStyle(color: Colors.white70, fontSize: 18),
+                style: TextStyle(color: Colors.black54, fontSize: 18),
               ),
             )
           : ListView.builder(
@@ -75,6 +84,7 @@ class RemindersScreen extends StatelessWidget {
               },
             ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromARGB(255, 2, 55, 109),
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(

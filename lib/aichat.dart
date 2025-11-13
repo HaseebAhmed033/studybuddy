@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AIChatScreen extends StatefulWidget {
-  const AIChatScreen({super.key});
+class AiChatPage extends StatefulWidget {
+  const AiChatPage({super.key});
 
   @override
-  State<AIChatScreen> createState() => _AIChatScreenState();
+  State<AiChatPage> createState() => _AiChatPageState();
 }
 
-class _AIChatScreenState extends State<AIChatScreen> {
+class _AiChatPageState extends State<AiChatPage> {
   final TextEditingController _controller = TextEditingController();
   final List<Map<String, String>> _messages = [];
 
@@ -29,7 +29,16 @@ class _AIChatScreenState extends State<AIChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('StudyBuddy AI')),
+      appBar: AppBar(
+        title: const Text('StudyBuddy AI'),
+        backgroundColor: const Color.fromARGB(255, 2, 55, 109),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // 👈 back to HomePage
+          },
+        ),
+      ),
       body: Column(
         children: [
           Expanded(
