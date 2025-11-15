@@ -43,14 +43,14 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(height: 8),
               const Text(
                 'BS IT - 6th Semester',
-                style: TextStyle(fontSize: 18, color: Colors.black54),
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
 
               // 📊 CGPA
               const SizedBox(height: 8),
               const Text(
                 'CGPA: 2.8',
-                style: TextStyle(fontSize: 18, color: Colors.black54),
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
 
               const SizedBox(height: 30),
