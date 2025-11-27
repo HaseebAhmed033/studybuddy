@@ -5,6 +5,8 @@ import 'profile.dart';
 import 'reminders.dart';
 import 'aichat.dart';
 import 'notes.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() {
   runApp(const StudyBuddyApp());
