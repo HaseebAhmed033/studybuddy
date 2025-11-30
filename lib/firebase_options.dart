@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'studybuddy-81835.firebasestorage.app',
     measurementId: 'G-VJC2CHEJHH',
   );
+
 }
